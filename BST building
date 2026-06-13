@@ -1,0 +1,84 @@
+#include <iostream>
+
+class Tree {
+    
+    private:
+    struct TreeNode {
+        int data;
+        TreeNode* left;
+        TreeNode* right;
+        
+        TreeNode(int val) {
+            data = val;
+            left = nullptr;
+            right = nullptr;
+        }
+        
+        TreeNode(int val, TreeNode* left_1, TreeNode* right_1) {
+            data = val;
+            left = left_1;
+            right = right_1;
+        }
+    
+    };
+    
+    TreeNode* root = nullptr;
+    
+    TreeNode* InsertNode(TreeNode* root, int value) {
+        
+        if(root == nullptr) {
+            root = new TreeNode(value);
+            return root;
+        }
+        
+        if(root->data == value) return root;
+        
+        if(root->data > value) {
+            root->left = InsertNode(root->left, value);
+        } else if(root->data < value) {
+            root->right = InsertNode(root->right, value);
+        }
+        
+        return root;
+    }
+    
+    public:
+    Tree() {
+        root = new TreeNode(0);
+    }
+    
+    Tree(int val) {
+        root = new TreeNode(val);
+    }
+    
+    Tree(int val, TreeNode* left_1, TreeNode* right_1) {
+        root = new TreeNode(val, left_1, right_1);
+    }
+    
+    bool InsertNode(int val) {
+        root = InsertNode(root, val);
+        if(root == nullptr) return false;
+        
+        return true;
+    }
+    
+    bool RemoveNode(TreeNode* root, int value) {
+        // stub
+    }
+    
+    ~Tree() {
+        // stub
+    }
+    
+    
+};
+
+
+
+int main()
+{
+    std::cout<<"Hello World";
+
+    return 0;
+}
+
